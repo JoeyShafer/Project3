@@ -1,6 +1,7 @@
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.ZoneId;
+import java.util.ArrayList;
 
 public class DateTimeOne extends MesoDateTimeOneAbstract
 {
@@ -62,10 +63,38 @@ public class DateTimeOne extends MesoDateTimeOneAbstract
 	}
    
 	public void dateTimeOfOtherCity() {
+	
 	   
 	}
    
 	public void dateTimeDifferentZone() {
+		//Get current time locally and for GMT
+		LocalTime timeNow = LocalTime.now();
+		LocalTime GMT = LocalTime.now(ZoneId.of("GMT"));
+			
+		//Take GMT and convet string to then get BST
+		String [] gmt = GMT.toString().split(":");
+		int hour = Integer.parseInt(gmt[0]) + 6;
+				
+		//Check to make sure time in on 24 hour scale.
+		if (hour > 24) {
+			hour = hour - 24;
+			gmt[0] = Integer.toString(hour);
+		}
+		String BST = gmt[0] + ":" + gmt[1];
+				
+		//Create ArrayList to hold the different time zones.
+		ArrayList<String> timeZones = new ArrayList<String>();
+		timeZones.add("Time of Server: " + timeNow.toString().substring(0, 6));
+		timeZones.add("GMT: " + GMT.toString().subSequence(0, 6));
+		timeZones.add("BST: " + BST);
+		timeZones.add("CST: " + timeNow.toString().substring(0, 6));
+				
+		//Print out the time in different time zones
+		System.out.println("Time at other zones:");
+		for(String s : timeZones) {
+			System.out.println(s);
+		}
 	   
 	}
    
