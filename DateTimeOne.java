@@ -1,27 +1,39 @@
+import java.time.LocalTime;
 
 public class DateTimeOne extends MesoDateTimeOneAbstract
 {
-   public int getValueOfSecond() {
+	private int timeSecond;
+
+	public DateTimeOne() {
+		
+	}
+	public int getValueOfSecond() {
+		LocalTime time = LocalTime.now();
+		String seconds = time.toString();
+		String s = seconds.substring(6, 8);
+		int second = Integer.parseInt(s);
+		this.timeSecond = second;
+		return timeSecond;
 	   
-   }
+	}
    
-   public void dateTimeNow() {
+	public void dateTimeNow() {
 	   
-   }
-   
-   public void sleepForFiveSec() {
+	}
+	
+	public void sleepForFiveSec() {
 	   
-   }
+	}
    
-   public void dateTimeForOtherCity() {
+	public void dateTimeOfOtherCity() {
 	   
-   }
+	}
    
-   public void dateTimeDifferentZone() {
+	public void dateTimeDifferentZone() {
 	   
-   }
+	}
    
-   public void timeZoneHashMap() {
+	public void timeZoneHashMap() {
 	   
    }
 }
