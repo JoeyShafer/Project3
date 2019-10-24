@@ -5,8 +5,11 @@ import org.junit.jupiter.api.Test;
 class MesoAsciiCalTest {
 
 	@Test
-	void test() {
-		fail("Not yet implemented");
+	public void testCalAverage() {
+		int expected = 79;
+		MesoAsciiCal ascii = new MesoAsciiCal(new MesoStation("NRMN"));
+		int actual = ascii.calAverage();
+		assertEquals(expected, actual);
 	}
 
 }
