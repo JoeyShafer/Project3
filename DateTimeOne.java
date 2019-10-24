@@ -1,7 +1,10 @@
-import java.time.LocalDate;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 
 public class DateTimeOne extends MesoDateTimeOneAbstract
 {
@@ -16,10 +19,8 @@ public class DateTimeOne extends MesoDateTimeOneAbstract
 		//Get the local time
 		LocalTime time = LocalTime.now();
 		
-		//convert local time to string and get the second value to convert to int
-		String seconds = time.toString();
-		String s = seconds.substring(6, 8);
-		int second = Integer.parseInt(s);
+		//get the value of the current second from the local time
+		int second = time.getSecond(); 
 		this.timeSecond = second;
 		return timeSecond;
 	   
@@ -27,13 +28,12 @@ public class DateTimeOne extends MesoDateTimeOneAbstract
    
 	public void dateTimeNow() {
 		// Get the current date and time. 
-		LocalDate dateNow = LocalDate.now();
+		Date dateNow = new Date();
 		LocalTime timeNow = LocalTime.now();
+		SimpleDateFormat dateFormat = new SimpleDateFormat("M/dd/yyyy");
 		
 		//Convert the date and time to String arrays to format the time and in the correct order. 
-		String [] dates = dateNow.toString().split("-");
 		String [] times = timeNow.toString().split(":");
-		String date = dates[1] + "/" + dates[2] + "/" + dates[3];
 		String time;
 		int hours = Integer.parseInt(times[0]);
 		
@@ -47,7 +47,7 @@ public class DateTimeOne extends MesoDateTimeOneAbstract
 			time = times[0] + ":" + times[1] + "AM";
 		}
 		
-		System.out.println("Current Date/Time: " + date + " " + time);
+		System.out.println("Current Date/Time: " + dateFormat.format(dateNow) + " " + time);
 		
 		
 	   
@@ -63,32 +63,25 @@ public class DateTimeOne extends MesoDateTimeOneAbstract
 	}
    
 	public void dateTimeOfOtherCity() {
+		HashMap<String, String> timeZones = new HashMap<String, String>();
+		LocalDateTime Gmt = LocalDateTime.now(ZoneId.of("GMT"));
 	
 	   
 	}
    
 	public void dateTimeDifferentZone() {
-		//Get current time locally and for GMT
+		//Get current time locally, GMT, and BSt
 		LocalTime timeNow = LocalTime.now();
 		LocalTime GMT = LocalTime.now(ZoneId.of("GMT"));
+		LocalTime BST = LocalTime.now(ZoneId.of("GMT+6"));
 			
-		//Take GMT and convet string to then get BST
-		String [] gmt = GMT.toString().split(":");
-		int hour = Integer.parseInt(gmt[0]) + 6;
-				
-		//Check to make sure time in on 24 hour scale.
-		if (hour > 24) {
-			hour = hour - 24;
-			gmt[0] = Integer.toString(hour);
-		}
-		String BST = gmt[0] + ":" + gmt[1];
 				
 		//Create ArrayList to hold the different time zones.
 		ArrayList<String> timeZones = new ArrayList<String>();
-		timeZones.add("Time of Server: " + timeNow.toString().substring(0, 6));
-		timeZones.add("GMT: " + GMT.toString().subSequence(0, 6));
-		timeZones.add("BST: " + BST);
-		timeZones.add("CST: " + timeNow.toString().substring(0, 6));
+		timeZones.add("Time of Server: " + timeNow.getHour() +":" + timeNow.getMinute());
+		timeZones.add("GMT: " + GMT.getHour() + ":" + GMT.getMinute());
+		timeZones.add("BST (90E): " + BST.getHour() + ":" + BST.getMinute());
+		timeZones.add("CST (90W): " + timeNow.getHour() +":" + timeNow.getMinute());
 				
 		//Print out the time in different time zones
 		System.out.println("Time at other zones:");
