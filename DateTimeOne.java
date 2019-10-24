@@ -5,6 +5,7 @@ import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Map;
 
 public class DateTimeOne extends MesoDateTimeOneAbstract
 {
@@ -63,10 +64,38 @@ public class DateTimeOne extends MesoDateTimeOneAbstract
 	}
    
 	public void dateTimeOfOtherCity() {
+		//Create a Hashmap to hold the info about the time zones.
 		HashMap<String, String> timeZones = new HashMap<String, String>();
+		
+		//Get the date and time of different time zones.
 		LocalDateTime Gmt = LocalDateTime.now(ZoneId.of("GMT"));
-	
-	   
+		LocalDateTime Bst = LocalDateTime.now(ZoneId.of("GMT+6"));
+		LocalDateTime Cst = LocalDateTime.now(ZoneId.of("America/Chiago"));
+		
+		//Create an arraylist to hold the time zone ids.
+		ArrayList<String> timeZoneId = new ArrayList<String>();
+		timeZoneId.add("GMT: ");
+		timeZoneId.add("BST: ");
+		timeZoneId.add("CST: ");
+		
+		ArrayList<String> dateAndTime = new ArrayList<String>();
+		dateAndTime.add(Gmt.getMonth() + "/" + Gmt.getDayOfMonth() + "/" + Gmt.getYear()
+			+" " + Gmt.toString().substring(11, 13) + ":" + Gmt.getMinute());
+		dateAndTime.add(Bst.getMonth() + "/" + Bst.getDayOfMonth() + "/" + Bst.getYear()
+			+" " + Bst.toString().substring(11, 13) + ":" + Bst.getMinute());
+		dateAndTime.add(Cst.getMonth() + "/" + Cst.getDayOfMonth() + "/" + Cst.getYear()
+			+" " + Cst.toString().substring(11, 13) + ":" + Cst.getMinute());
+		
+		for (int i = 0; i < timeZoneId.size(); ++i) {
+			timeZones.put(timeZoneId.get(i), dateAndTime.get(i));
+		}
+		
+		System.out.println("Date/time at other zones:");
+		
+		for (Map.Entry<String, String> entry : timeZones.entrySet())  {
+			System.out.println(entry.getKey() + entry.getValue());
+		}
+		
 	}
    
 	public void dateTimeDifferentZone() {

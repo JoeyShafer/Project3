@@ -1,7 +1,9 @@
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.ZoneId;
 import java.util.Date;
 
 import org.junit.jupiter.api.Test;
@@ -26,6 +28,15 @@ class DateTimeOneTest {
 		Date date = new Date();
 		String actual = dateFormat.format(date);
 		assertEquals(expected, actual);
+	}
+	
+	@Test
+	public void getHour() {
+		String expected = "02";
+		LocalDateTime Cst = LocalDateTime.now(ZoneId.of("GMT"));
+		String actual = Integer.toString(Cst.getHour());
+		assertEquals(expected, actual);
+		
 	}
 
 }
