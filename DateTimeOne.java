@@ -163,7 +163,7 @@ public class DateTimeOne extends MesoDateTimeOneAbstract
 		
 		//Print out style 1
 		System.out.println("Print Style 1:");
-		for (Map.Entry<String, String> entry : timeZones1.entrySet())  {
+		for (Map.Entry<String, String> entry : sort.entrySet())  {
 			System.out.println(entry.getKey() + entry.getValue());
 		}
 		
@@ -179,7 +179,7 @@ public class DateTimeOne extends MesoDateTimeOneAbstract
 		
 		//Print out style 2
 		System.out.println("Print Style 3:");
-		for (Map.Entry<String, String> entry : timeZones2.entrySet())  {
+		for (Map.Entry<String, String> entry : sort.entrySet())  {
 			System.out.println(entry.getKey() + entry.getValue());
 		}
 		
