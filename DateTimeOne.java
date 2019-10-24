@@ -2,10 +2,13 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class DateTimeOne extends MesoDateTimeOneAbstract
 {
@@ -78,6 +81,7 @@ public class DateTimeOne extends MesoDateTimeOneAbstract
 		timeZoneId.add("BST: ");
 		timeZoneId.add("CST: ");
 		
+		//Create an arraylist to hold the date and time.
 		ArrayList<String> dateAndTime = new ArrayList<String>();
 		dateAndTime.add(Gmt.getMonth() + "/" + Gmt.getDayOfMonth() + "/" + Gmt.getYear()
 			+" " + Gmt.toString().substring(11, 13) + ":" + Gmt.getMinute());
@@ -86,12 +90,13 @@ public class DateTimeOne extends MesoDateTimeOneAbstract
 		dateAndTime.add(Cst.getMonth() + "/" + Cst.getDayOfMonth() + "/" + Cst.getYear()
 			+" " + Cst.toString().substring(11, 13) + ":" + Cst.getMinute());
 		
+		//put the two arraylist into the HashMao
 		for (int i = 0; i < timeZoneId.size(); ++i) {
 			timeZones.put(timeZoneId.get(i), dateAndTime.get(i));
 		}
 		
+		//Print out the HashMap
 		System.out.println("Date/time at other zones:");
-		
 		for (Map.Entry<String, String> entry : timeZones.entrySet())  {
 			System.out.println(entry.getKey() + entry.getValue());
 		}
@@ -121,6 +126,77 @@ public class DateTimeOne extends MesoDateTimeOneAbstract
 	}
    
 	public void timeZoneHashMap() {
+		HashMap<String, String> timeZones1 = new HashMap<String, String>();
+		
+		//Get the date and time of different time zones.
+		LocalDateTime Gmt = LocalDateTime.now(ZoneId.of("GMT"));
+		LocalDateTime Bst = LocalDateTime.now(ZoneId.of("GMT+6"));
+		LocalDateTime Cst = LocalDateTime.now(ZoneId.of("America/Chiago"));
+		
+		//Create an arraylist to hold the time zone ids.
+		ArrayList<String> timeZoneId = new ArrayList<String>();
+		timeZoneId.add("GMT ");
+		timeZoneId.add("BST ");
+		timeZoneId.add("CST ");
+		timeZoneId.add("AST ");
+		timeZoneId.add("ZST ");
+		
+		//Create an arraylist to hold the date and time.
+		ArrayList<String> dateAndTime = new ArrayList<String>();
+		dateAndTime.add(Gmt.getMonth() + "/" + Gmt.getDayOfMonth() + "/" + Gmt.getYear()
+			+" " + Gmt.toString().substring(11, 13) + ":" + Gmt.getMinute());
+		dateAndTime.add(Bst.getMonth() + "/" + Bst.getDayOfMonth() + "/" + Bst.getYear()
+			+" " + Bst.toString().substring(11, 13) + ":" + Bst.getMinute());
+		dateAndTime.add(Cst.getMonth() + "/" + Cst.getDayOfMonth() + "/" + Cst.getYear()
+			+" " + Cst.toString().substring(11, 13) + ":" + Cst.getMinute());
+		dateAndTime.add("10/01/2020 19:59");
+		dateAndTime.add("11/05/2018 19:59");
+		
+		//put the two arraylist into the HashMap
+		for (int i = 0; i < timeZoneId.size(); ++i) {
+			timeZones1.put(timeZoneId.get(i), dateAndTime.get(i));
+		}
+		
+		//Convert the HashMap to a TreeMap to sort
+		TreeMap<String, String> sort = new TreeMap<String, String>(timeZones1);
+		timeZones1 = new HashMap<String, String>(sort);
+		
+		//Print out style 1
+		System.out.println("Print Style 1:");
+		for (Map.Entry<String, String> entry : timeZones1.entrySet())  {
+			System.out.println(entry.getKey() + entry.getValue());
+		}
+		
+		//create a second HashMap to store the values of the first HashMap as keys
+		HashMap<String, String> timeZones2 = new HashMap<String, String>();
+		for (Map.Entry<String, String> entry : timeZones1.entrySet()) {
+			timeZones2.put(entry.getValue(), "");
+		}
+		
+		//use a TreeMap to sort the keys of the second HashMap
+		sort = new TreeMap<String, String>(timeZones2);
+		timeZones2 = new HashMap<String, String>(sort);
+		
+		//Print out style 2
+		System.out.println("Print Style 3:");
+		for (Map.Entry<String, String> entry : timeZones2.entrySet())  {
+			System.out.println(entry.getKey() + entry.getValue());
+		}
+		
+		ArrayList<LocalDateTime> localDateTime = new ArrayList<LocalDateTime>();
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-ddTHH:mm");
+		localDateTime.add(Gmt);
+		localDateTime.add(Bst);
+		localDateTime.add(Cst);
+		localDateTime.add(LocalDateTime.parse(timeZones1.get("AST"), formatter));
+		localDateTime.add(LocalDateTime.parse(timeZones1.get("ZST"), formatter));
+		
+		Collections.sort(localDateTime);
+		
+		System.out.println("Print Style 5: Final sorted Array:");
+		for (int i = 0; i < localDateTime.size(); ++i) {
+			System.out.println(localDateTime.get(i));
+		}
 	   
    }
 }
