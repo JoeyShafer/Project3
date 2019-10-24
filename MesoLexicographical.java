@@ -4,6 +4,12 @@ import java.util.TreeMap;
 
 public class MesoLexicographical extends MesoSortedAbstract
 {
+	//Map that stores the sorted HashMap.
+	Map<String, Integer> map = new HashMap<String, Integer>();
+	
+	public MesoLexicographical (HashMap<String,Integer> map) {
+		this.map = map;
+	}
 	/*
 	 * Sort an unsorted HashMap and return the sorted map
 	 * 
@@ -13,7 +19,8 @@ public class MesoLexicographical extends MesoSortedAbstract
 	public Map<String, Integer> sortedMap(HashMap<String, Integer> unsorted) {
 		//Use a TreeMap the sort the HashMap.
 		TreeMap<String, Integer> sorted = new TreeMap<String, Integer>(unsorted);
-		return sorted;
+		this.map = sorted;
+		return map;
 		
 	}
 }
