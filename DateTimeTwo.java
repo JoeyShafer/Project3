@@ -13,6 +13,7 @@ import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.TreeMap;
 
 public class DateTimeTwo {
 	
@@ -95,6 +96,14 @@ public class DateTimeTwo {
 	
 	public void dateHashMap() {
 		for (Map.Entry<LocalDate, Integer> entry : dates.entrySet()) {
+			System.out.println(entry.getKey() + ":" + entry.getValue());
+		}
+	}
+	
+	public void dateHashMapSorted() {
+		TreeMap<LocalDate, Integer> sorted = new TreeMap<LocalDate, Integer>(dates);
+		
+		for (Map.Entry<LocalDate, Integer> entry : sorted.entrySet()) {
 			System.out.println(entry.getKey() + ":" + entry.getValue());
 		}
 	}
