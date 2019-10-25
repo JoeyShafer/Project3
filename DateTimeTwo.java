@@ -12,6 +12,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 public class DateTimeTwo {
 	
@@ -92,6 +93,11 @@ public class DateTimeTwo {
 		}
 	}
 	
+	public void dateHashMap() {
+		for (Map.Entry<LocalDate, Integer> entry : dates.entrySet()) {
+			System.out.println(entry.getKey() + ":" + entry.getValue());
+		}
+	}
 	public void read() throws IOException
 	{
 		// Declare a BufferReader to read in file.
