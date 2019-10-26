@@ -8,7 +8,10 @@ public class MesoLexicographical extends MesoSortedAbstract
 	Map<String, Integer> map = new HashMap<String, Integer>();
 	
 	public MesoLexicographical (HashMap<String,Integer> map) {
-		this.map = map;
+		this.map = sortedMap(map);
+		for(Map.Entry<String, Integer> entry : this.map.entrySet()) { 
+			System.out.println(entry.getKey() + " " + entry.getValue());
+		}
 	}
 	/*
 	 * Sort an unsorted HashMap and return the sorted map

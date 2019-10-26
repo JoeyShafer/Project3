@@ -51,7 +51,7 @@ public class DateTimeTwo {
 		String lastDay = format.format(day).toUpperCase();
 		
 		System.out.println("For the year (" + year + ") and month (" +  month + "), the fifeenth day is "
-				+ fifeenthDay + "and the last day is " + lastDay);
+				+ fifeenthDay + " and the last day is " + lastDay);
 	}
 	
 	public void compareYear() {
@@ -60,7 +60,8 @@ public class DateTimeTwo {
 		
 		//Create an arraylist of LocalDates and convert the date from dates.txt to localDates.
 		ArrayList<LocalDate> date = new ArrayList<LocalDate>();
-		DateTimeFormatter df = new DateTimeFormatterBuilder().appendPattern("yyyy-MM-dd").toFormatter(Locale.ENGLISH);
+		DateTimeFormatter df = new DateTimeFormatterBuilder().parseCaseInsensitive()
+				.appendPattern("MM.dd.yyy").toFormatter(Locale.ENGLISH);
 		for (String s : inputDates) {
 			date.add(LocalDate.parse(s, df));
 		}
@@ -74,10 +75,10 @@ public class DateTimeTwo {
 		for (int i = 0; i < date.size(); ++i) {
 			isLeapYear = cal.isLeapYear(date.get(i).getYear());
 			if (isLeapYear) {
-				output = date.get(i).getYear() + "is a leap year, ";
+				output = date.get(i).getYear() + " is a leap year, ";
 			}
 			else {
-				output = date.get(i).getYear() + "is not a leap year, ";
+				output = date.get(i).getYear() + " is not a leap year, ";
 			}
 			
 			//Calculate the time between two dates and add to output.

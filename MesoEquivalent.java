@@ -29,6 +29,7 @@ public class MesoEquivalent {
 		//go through all the stations calculating their averages 
 		// and comparing if they match, if they do add the station to HashMap
 		for (int i = 0; i < stations.size(); ++i) {
+			String tis = stations.get(i);
 			asciiAverage = new MesoAsciiCal(new MesoStation(stations.get(i)));
 			int avg = asciiAverage.calAverage();
 			if (asciiAvg == avg) {
@@ -61,7 +62,7 @@ public class MesoEquivalent {
        while (strg != null) {
        
        	// Get the station Id from the line and add to staion array.
-       	String stationID = strg.substring(1,5);
+       	String stationID = strg.substring(2,6);
        	stations.add(stationID);
        	
        	//Read next line and increase lineNum and index.

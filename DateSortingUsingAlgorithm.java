@@ -17,7 +17,8 @@ public class DateSortingUsingAlgorithm {
 	public DateSortingUsingAlgorithm () throws IOException {
 		read();
 		ArrayList<LocalDate> date = new ArrayList<LocalDate>();
-		DateTimeFormatter df = new DateTimeFormatterBuilder().appendPattern("yyyy-MM-dd").toFormatter(Locale.ENGLISH);
+		DateTimeFormatter df = new DateTimeFormatterBuilder().parseCaseInsensitive()
+				.appendPattern("yyyy-MM-dd").toFormatter(Locale.ENGLISH);
 		for (String s : inputDates) {
 			date.add(LocalDate.parse(s, df));
 		}
@@ -96,7 +97,7 @@ public class DateSortingUsingAlgorithm {
 		 
 		for (LocalDate d : date) {
 	          	System.out.println(d);
-	            }
+	    }
 				
 				
 	}
@@ -113,7 +114,8 @@ public class DateSortingUsingAlgorithm {
      
        while (strg != null) {
     	 
-    	   String line = strg.trim();
+    	   String line = strg.strip();
+    	   line = line.replaceAll("\\s", "");
     	   inputDates.add(line);
        	
     	   //Read next line.
