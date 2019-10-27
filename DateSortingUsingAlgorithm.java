@@ -114,7 +114,7 @@ public class DateSortingUsingAlgorithm {
      
        while (strg != null) {
     	 
-    	   String line = strg.strip();
+    	   String line = strg.trim();
     	   line = line.replaceAll("\\s", "");
     	   inputDates.add(line);
        	

@@ -42,7 +42,7 @@ public class DateTimeTwo {
 	
 	public void daysOfAnyMonth(int month, int year) {
 		//Get date fo the 15 day of the month
-		Date day = new GregorianCalendar(year, month, 15).getTime();
+		Date day = new GregorianCalendar(year, month -1, 15).getTime();
 		SimpleDateFormat format = new SimpleDateFormat("EEEE");
 		String fifeenthDay = format.format(day).toUpperCase();
 		

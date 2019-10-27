@@ -8,7 +8,9 @@ public class MesoAsciiCal extends MesoAsciiAbstract
 	
 	public int calAverage() {
 		//Create array to store the average and the station id in ascii form
-		int[] calAverage = new int[3];
+		String Nrmn ="NRMN";
+		double calAverage;
+		int average;
 		int[] ascii = new int[4];
 		
 		//converts station id to ascii number
@@ -17,22 +19,35 @@ public class MesoAsciiCal extends MesoAsciiAbstract
 		}
 				
 		//finds the average of the ascii numbers
-		double average = 0;
+		double paramAverage = 0;
 		for (int i = 0; i < ascii.length; ++i) {
-			average += ascii[i];
+			paramAverage += ascii[i];
 		}
-		average = average/ascii.length;
+		paramAverage = paramAverage/ascii.length;
+		
+		//converts station id to ascii number
+		for (int i = 0; i < Nrmn.length(); ++i) {
+				ascii[i] = (int)Nrmn.charAt(i);
+		}
+						
+		//finds the average of the ascii numbers
+		double nrmnAverage = 0;
+		for (int i = 0; i < ascii.length; ++i) {
+			nrmnAverage += ascii[i];
+		}
+		nrmnAverage = nrmnAverage/ascii.length;
 				
 		//Finds the ceiling, floor, as well as rounds the average up or down
-		calAverage[0] = (int)Math.ceil(average);
-		calAverage[1] = (int)Math.floor(average);
+		calAverage = (int)(paramAverage + nrmnAverage) / 2;
+		average = (int)Math.ceil(calAverage);
+		/*
 		if ((average -calAverage[1]) > 0.25) {
 			calAverage[2] = (int)Math.ceil(average);
 		}
 		else {
 			calAverage[2] = (int)Math.floor(average);
-		}
-		return calAverage[2];
+		}*/
+		return average;
 	}
 
 }

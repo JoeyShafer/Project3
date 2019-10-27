@@ -74,6 +74,7 @@ public class DateTimeOne extends MesoDateTimeOneAbstract
 		LocalTime timeNow = LocalTime.now();
 		LocalTime GMT = LocalTime.now(ZoneId.of("GMT"));
 		LocalTime BST = LocalTime.now(ZoneId.of("GMT+6"));
+		LocalTime CST = LocalTime.now(ZoneId.of("GMT-5"));
 					
 						
 		//Create ArrayList to hold the different time zones.
@@ -81,7 +82,7 @@ public class DateTimeOne extends MesoDateTimeOneAbstract
 		timeZones.add("Time of Server: " + timeNow.getHour() +":" + timeNow.getMinute());
 		timeZones.add("GMT: " + GMT.getHour() + ":" + GMT.getMinute());
 		timeZones.add("BST (90E): " + BST.getHour() + ":" + BST.getMinute());
-		timeZones.add("CST (90W): " + timeNow.getHour() +":" + timeNow.getMinute());
+		timeZones.add("CST (90W): " + CST.getHour() +":" + CST.getMinute());
 						
 		//Print out the time in different time zones
 		for(int i = 0; i < timeZones.size(); ++i) {
@@ -185,7 +186,10 @@ public class DateTimeOne extends MesoDateTimeOneAbstract
 			System.out.println(entry.getKey() + entry.getValue());
 		}
 		
+		//Create an Arraylist to store the localDateTime of the dates in the HashMaps
 		ArrayList<LocalDateTime> localDateTime = new ArrayList<LocalDateTime>();
+		
+		//Format the String into LocalDateTime and add to ArrayList
 		DateTimeFormatter formatter = new DateTimeFormatterBuilder().parseCaseInsensitive()
 				.appendPattern("MM/dd/yyy HH:mm")
 				.toFormatter(Locale.ENGLISH);
@@ -195,6 +199,7 @@ public class DateTimeOne extends MesoDateTimeOneAbstract
 		localDateTime.add(LocalDateTime.parse(timeZones1.get("AST "), formatter));
 		localDateTime.add(LocalDateTime.parse(timeZones1.get("ZST "), formatter));
 		
+		//Sort ArrayList and print it out.
 		Collections.sort(localDateTime);
 		
 		System.out.println("Print Style 5: Final sorted Array:");
