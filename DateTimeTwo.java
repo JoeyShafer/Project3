@@ -47,10 +47,13 @@ public class DateTimeTwo {
 		String fifeenthDay = format.format(day).toUpperCase();
 		
 		//Get the last day of the month
-		day = new GregorianCalendar(year, month, Calendar.getInstance().getActualMaximum(Calendar.DAY_OF_MONTH)).getTime();
+		Calendar cal = new GregorianCalendar();
+		cal.set(Calendar.YEAR, year);
+		cal.set(Calendar.MONTH, month -1);
+		day = new GregorianCalendar(year, month -1, cal.getActualMaximum(Calendar.DAY_OF_MONTH)).getTime();
 		String lastDay = format.format(day).toUpperCase();
 		
-		System.out.println("For the year (" + year + ") and month (" +  month + "), the fifeenth day is "
+		System.out.println("For the year (" + year + ") and month (" +  month + "), the fifteenth day is "
 				+ fifeenthDay + " and the last day is " + lastDay);
 	}
 	

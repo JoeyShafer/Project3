@@ -79,7 +79,7 @@ public class DateTimeOne extends MesoDateTimeOneAbstract
 						
 		//Create ArrayList to hold the different time zones.
 		ArrayList<String> timeZones = new ArrayList<String>();
-		timeZones.add("Time of Server: " + timeNow.getHour() +":" + timeNow.getMinute());
+		timeZones.add("Time on Server: " + timeNow.getHour() +":" + timeNow.getMinute());
 		timeZones.add("GMT: " + GMT.getHour() + ":" + GMT.getMinute());
 		timeZones.add("BST (90E): " + BST.getHour() + ":" + BST.getMinute());
 		timeZones.add("CST (90W): " + CST.getHour() +":" + CST.getMinute());
@@ -138,11 +138,11 @@ public class DateTimeOne extends MesoDateTimeOneAbstract
 		
 		//Create an arraylist to hold the time zone ids.
 		ArrayList<String> timeZoneId = new ArrayList<String>();
-		timeZoneId.add("GMT ");
-		timeZoneId.add("BST ");
-		timeZoneId.add("CST ");
-		timeZoneId.add("AST ");
-		timeZoneId.add("ZST ");
+		timeZoneId.add("GMT");
+		timeZoneId.add("BST");
+		timeZoneId.add("CST");
+		timeZoneId.add("AST");
+		timeZoneId.add("ZST");
 		
 		//Create an arraylist to hold the date and time.
 		ArrayList<String> dateAndTime = new ArrayList<String>();
@@ -167,7 +167,7 @@ public class DateTimeOne extends MesoDateTimeOneAbstract
 		//Print out style 1
 		System.out.println("Print Style 1:");
 		for (Map.Entry<String, String> entry : sort.entrySet())  {
-			System.out.println(entry.getKey() + entry.getValue());
+			System.out.println(entry.getKey() + " " + entry.getValue());
 		}
 		
 		//create a second HashMap to store the values of the first HashMap as keys
@@ -196,8 +196,8 @@ public class DateTimeOne extends MesoDateTimeOneAbstract
 		localDateTime.add(Gmt);
 		localDateTime.add(Bst);
 		localDateTime.add(Cst);
-		localDateTime.add(LocalDateTime.parse(timeZones1.get("AST "), formatter));
-		localDateTime.add(LocalDateTime.parse(timeZones1.get("ZST "), formatter));
+		localDateTime.add(LocalDateTime.parse(timeZones1.get("AST"), formatter));
+		localDateTime.add(LocalDateTime.parse(timeZones1.get("ZST"), formatter));
 		
 		//Sort ArrayList and print it out.
 		Collections.sort(localDateTime);

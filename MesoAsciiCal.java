@@ -38,15 +38,13 @@ public class MesoAsciiCal extends MesoAsciiAbstract
 		nrmnAverage = nrmnAverage/ascii.length;
 				
 		//Finds the ceiling, floor, as well as rounds the average up or down
-		calAverage = (int)(paramAverage + nrmnAverage) / 2;
-		average = (int)Math.ceil(calAverage);
-		/*
-		if ((average -calAverage[1]) > 0.25) {
-			calAverage[2] = (int)Math.ceil(average);
+		calAverage = (paramAverage + nrmnAverage) / 2;
+		if ((calAverage - Math.floor(calAverage)) > 0.25) {
+			average = (int)Math.ceil(calAverage);
 		}
 		else {
-			calAverage[2] = (int)Math.floor(average);
-		}*/
+			average = (int)Math.floor(calAverage);
+		}
 		return average;
 	}
 

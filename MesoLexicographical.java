@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.TreeMap;
@@ -10,7 +12,7 @@ public class MesoLexicographical extends MesoSortedAbstract
 	public MesoLexicographical (HashMap<String,Integer> map) {
 		this.map = sortedMap(map);
 		for(Map.Entry<String, Integer> entry : this.map.entrySet()) { 
-			System.out.println(entry.getKey() + " " + entry.getValue());
+			System.out.println(entry.getKey());
 		}
 	}
 	/*
@@ -22,8 +24,7 @@ public class MesoLexicographical extends MesoSortedAbstract
 	public Map<String, Integer> sortedMap(HashMap<String, Integer> unsorted) {
 		//Use a TreeMap the sort the HashMap.
 		TreeMap<String, Integer> sorted = new TreeMap<String, Integer>(unsorted);
-		this.map = sorted;
-		return map;
+		return sorted;
 		
 	}
 }
