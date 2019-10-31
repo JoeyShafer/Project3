@@ -35,3 +35,26 @@ public void dateHashMap()
 public void dateHashMapSorted()
   This method takes the dates from the txt file and puts them into a HashMap, sorts them and print them out.
     
+MesoAsciiCal Class
+
+public int calAverage() 
+  This method takes a given four letter String, and the String NRMN, finds the average Ascii value of each one then adds them to find the average Ascii value of both of them combined and returns it.
+  
+MesoEquivalent Class
+
+public HashMap<String, Integer> calAsciiEqual() 
+  This method uses the Ascii average calculated from the method above and loops through an array containing all the station ids to find stations that share the same Ascii average value and then stores them into a HashMap and returns it.
+  
+MesoLexicographical class
+
+public Map<String, Integer> sortedMap() 
+  this method takes the HashMap from the prevoius class and sorts and prints the keys of the HashMap.
+  
+DateSortingUsingAlgrothim class
+  
+public void dateHashMapSortingDescending() 
+  This method takes input dates read in from a txt file and uses selection sort to sort them in a descending order.
+  
+
+public void dateHashMapSorting() 
+  This method takes input dates read in from a txt file and uses selection sort to sort them.
